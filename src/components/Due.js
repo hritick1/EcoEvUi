@@ -4,7 +4,7 @@ import React, { useEffect, useState } from 'react'
 export default function Due({name}) {
     const [due, setDue] =useState(0);
     useEffect(() => {
-     axios.get(`http://localhost:8080/getDue/${name}`).then((result) => {
+     axios.get(`https://eco-ev.onrender.com/getDue/${name}`).then((result) => {
         console.log(result);
         setDue(result.data);
      }).catch((err) => {
