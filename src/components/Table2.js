@@ -9,6 +9,7 @@ const Table1 = ({ data }) => {
           <tr>
             <th>Name</th>
             <th>DailyPay</th>
+            <th>DailyNotPaid</th>
             <th>Date</th>
           </tr>
         </thead>
@@ -17,6 +18,7 @@ const Table1 = ({ data }) => {
             <tr key={index}>
               <td>{row.name}</td>
               <td>{row.dailyPay}</td>
+              <td>{row.notPaid}</td>
               <td>{row.date}</td>
             </tr>
           ))}

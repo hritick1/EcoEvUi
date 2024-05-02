@@ -9,8 +9,7 @@ export default function Home({name}) {
         e.preventDefault();
         console.log(person);
         postData();
-        setPerson({});
-        setPerson({dailyPay:"",maintenance:"",partsAdded:""});
+        setPerson({dailyPay:"",dailyNotPaid:"",maintenance:"",partsAdded:""});
     }
     const handleChange=(e)=>{
       const value=e.target.value;
@@ -38,6 +37,10 @@ export default function Home({name}) {
   <input type="number" className="form-control" id="desc" name="dailyPay"value={person.dailyPay}onChange={(e)=>handleChange(e)}></input>
 </div>
 <div class="">
+  <label for="desc" class="form-label">DailyNotPaid:</label>
+  <input type="number" className="form-control" id="desc" name="dailyNotPaid"value={person.dailyNotPaid}onChange={(e)=>handleChange(e)}></input>
+</div>
+<div class="">
   <label for="desc" class="form-label">Maintenance:</label>
   <input type="number" className="form-control" id="desc" name="maintenance"value={person.maintenance}onChange={(e)=>handleChange(e)}></input>
 </div>
@@ -47,7 +50,7 @@ export default function Home({name}) {
     <input type="text" className="form-control" id="title"name="partsAdded" value={person.partsAdded} onChange={(e)=>handleChange(e)} aria-describedby="name"/>
   </div>
   <button type="submit" className="btn btn-primary mt-2" style={{backgroundColor:"#4E6C50"}}>Submit</button>
-  <button type="button" className="btn btn-primary ms-5 mt-2" onClick={()=>{ setPerson({dailyPay:"",maintenance:"",partsAdded:""})}}style={{backgroundColor:"#4E6C50"}}>Clear</button>
+  <button type="button" className="btn btn-primary ms-5 mt-2" onClick={()=>{ setPerson({dailyPay:"",dailyNotPaid:"",maintenance:"",partsAdded:""})}}style={{backgroundColor:"#4E6C50"}}>Clear</button>
 </form>
  
 </div> </div>

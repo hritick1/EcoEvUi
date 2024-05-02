@@ -18,6 +18,7 @@ export default function TotalData({name}) {
         <h3>Name: {data.name}</h3>
         <h3>Date: {data.date}</h3>
         <h3>TotalDue: {data.totalDue}</h3>
+        <h3>TotalNotPaid: {data.totalNotPaid}</h3>
         <h3>TotalIncome: {data.totalIncome}</h3>
         <h3>TotalServiceCost: {data.totalServiceCost}</h3>
     </div>
