@@ -12,7 +12,6 @@ export default function First({name,setName}) {
   const handleForm=(e)=>{
     e.preventDefault();
     toast.success("Named Added");
-    setName("");
     navigate("/home")
     console.log(name);
 }
