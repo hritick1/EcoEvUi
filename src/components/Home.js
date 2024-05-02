@@ -38,7 +38,7 @@ export default function Home({name}) {
 </div>
 <div class="">
   <label for="desc" class="form-label">DailyNotPaid:</label>
-  <input type="number" className="form-control" id="desc" name="dailyNotPaid"value={person.notPaid}onChange={(e)=>handleChange(e)}></input>
+  <input type="number" className="form-control" id="desc" name="notPaid"value={person.notPaid}onChange={(e)=>handleChange(e)}></input>
 </div>
 <div class="">
   <label for="desc" class="form-label">Maintenance:</label>
