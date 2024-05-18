@@ -30,7 +30,6 @@ const serverURLs = [
     }
   );
   
-  // Add a response interceptor
   axios.interceptors.response.use(
     function (response) {
       // Modify response data here
@@ -38,14 +37,12 @@ const serverURLs = [
     },
     function (error) {
       // Handle response error
-      // If the error indicates a server failure, switch to the next server and retry the request
-      if (error.response && error.response.status >= 500) {
+      // If the error indicates a server failure or connection refused, switch to the next server and retry the request
+      if (error.response && error.response.status === 503) {
         switchToNextServer();
         return axios.request(error.config);
       }
       return Promise.reject(error);
     }
   );
-  
-  // Now you can make requests using axios.get(), axios.post(), etc., and they will use the base URL
   
