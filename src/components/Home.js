@@ -17,7 +17,7 @@ export default function Home({name}) {
     }
     const [person, setPerson] = useState({});
     const postData=()=>{
-      axios.post(`https://eco-ev.onrender.com/addDaily/${name}`,person).then((result) => {
+      axios.post(`/addDaily/${name}`,person).then((result) => {
         console.log(result);
         toast.success(result.data);
      }).catch((err) => {

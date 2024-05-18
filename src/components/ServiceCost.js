@@ -5,7 +5,7 @@ import axios from 'axios';
 export default function ServiceCost({name}) {
     const [data, setData] = useState([]);
     useEffect(() => {
-      axios.get(`https://eco-ev.onrender.com/getMaintenance/${name}`).then((result) => {
+      axios.get(`/getMaintenance/${name}`).then((result) => {
         console.log(result);
         setData(result.data);
       }).catch((err) => {

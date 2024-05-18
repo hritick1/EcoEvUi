@@ -5,7 +5,7 @@ import axios from 'axios';
 export default function DailyFinances({name}) {
     const [data, setData] = useState([]);
     useEffect(() => {
-      axios.get(`https://eco-ev.onrender.com/get/${name}`).then((result) => {
+      axios.get(`/get/${name}`).then((result) => {
         console.log(result);
         setData(result.data);
       }).catch((err) => {

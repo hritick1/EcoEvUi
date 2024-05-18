@@ -4,7 +4,7 @@ import React, { useEffect, useState } from 'react'
 export default function TotalData({name}) {
     const [data, setData] = useState([]);
     useEffect(() => {
-      axios.get(`https://eco-ev.onrender.com/getTotal/${name}`).then((result) => {
+      axios.get(`/getTotal/${name}`).then((result) => {
         console.log(result);
         setData(result.data);
       }).catch((err) => {
