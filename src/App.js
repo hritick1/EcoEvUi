@@ -10,11 +10,30 @@ import Due from './components/Due';
 import TotalData from './components/TotalData';
 import ServiceCost from './components/ServiceCost';
 import DailyFinances from './components/DailyFinances';
+import tryfxn from './components/Axios';
 
 
 function App() {
   const [name, setName] = useState("");
-  
+  useEffect(() => {
+    const fetchData = async () => {
+        try {
+            const data = await tryfxn();
+            if (data !== null) {
+                console.log('Data received:', data);
+                // Display or process the data as needed
+            } else {
+                console.error('No server responded successfully.');
+                // Handle case when no server responded successfully
+            }
+        } catch (error) {
+            console.error('Error occurred:', error);
+            // Handle other errors if needed
+        }
+    };
+
+    fetchData(); // Call the function inside useEffect
+}, []); // Empty dependency array means this effect runs only once after initial render
   return (<div>
   <Router>
     <Header/>

@@ -28,6 +28,7 @@ export default function First({name,setName}) {
   value={name} // Bind selected value to the 'name' state variable
   onChange={handleChange} // Call handleChange function when selection changes
 >
+<option value="select">Select-Name</option>
   <option value="Mohan">Mohan</option>
   <option value="Gathu">Gathu</option>
   <option value="Rohit">Rohit</option>

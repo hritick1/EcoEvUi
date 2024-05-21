@@ -12,6 +12,7 @@ export default function Home({name}) {
         setPerson({dailyPay:"",notPaid:"",maintenance:"",partsAdded:""});
     }
     const handleChange=(e)=>{
+      console.log(name);
       const value=e.target.value;
       setPerson({...person,[e.target.name]:value});
     }
