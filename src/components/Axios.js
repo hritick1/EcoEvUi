@@ -1,62 +1,53 @@
 import axios from 'axios';
-import { toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 
 const serverURLs = [
+    'https://eco-ev.onrender.com',
     'https://eco-ev-ng2x.onrender.com',
     'https://eco-ev-w0jm.onrender.com',
-    'https://eco-ev-7qor.onrender.com',
-    'https://eco-ev.onrender.com'
+    'https://eco-ev-7qor.onrender.com'
+    
 ];
+
 
 let currentServerIndex = 0;
 
-// Function to switch to the next server URL
-function switchToNextServer() {
+
+// Create a new Axios instance with a custom config
+const axiosInstance = axios.create({
+  timeout: 5000, // Set a timeout of 5 seconds
+});
+
+// Set the default URL
+axiosInstance.defaults.baseURL = serverURLs[currentServerIndex];
+
+
+// Define a function to switch to the fallback URL
+function switchToFallbackURL() {
     currentServerIndex = (currentServerIndex + 1) % serverURLs.length;
-    axios.defaults.baseURL = serverURLs[currentServerIndex];
+    axiosInstance.defaults.baseURL = serverURLs[currentServerIndex];
 }
 
-// Set the default base URL to the first server
-axios.defaults.baseURL = serverURLs[currentServerIndex];
-
-// Function to get data from the /getDue/Mohan endpoint
-async function getData() {
-    try {
-        const response = await axios.get('/getDue/Mohan');
-        return response.data; // Return data if successful
-    } catch (error) {
-        // If the error indicates a server failure or connection refused, switch to the next server and retry the request
-        if (error.response && (error.response.status === 503 || error.code === 'ECONNREFUSED')) {
-            switchToNextServer();
-            return getData(); // Retry with the next server
-        }
-        throw error;
-    }
+// Define a function to handle errors
+function handleError(error) {
+  if (error.code === 'ECONNABORTED' || error.message.includes('timeout')) {
+    // If the request timed out, switch to the fallback URL
+    switchToFallbackURL();
+  } else if (error.response && error.response.status === 500) {
+    // If the server returned a 500 error, switch to the fallback URL
+    switchToFallbackURL();
+  }
 }
 
-// Function to handle getting data from servers
-async function fetchDataFromServers() {
-    for (const server of serverURLs) {
-        axios.defaults.baseURL = server;
-        try {
-            const data = await getData();
-            return data;
-        } catch (error) {
-            console.error(`Error fetching data from ${server}:`, error);
-        }
-    }
-    throw new Error('All servers are unavailable');
+// Define a function to make a request
+async function makeRequest() {
+  try {
+    const response = await axiosInstance.get('/getDue/Mohan');
+    console.log(response.data);
+  } catch (error) {
+    handleError(error);
+  }
 }
 
-// Usage
-fetchDataFromServers()
-    .then(data => {
-        // Process data here
-        console.log('Data:', data);
-    })
-    .catch(error => {
-        console.error('Failed to fetch data:', error);
-        toast.error('All servers are down');
-        // Handle the error accordingly
-    });
+// Call the function to make a request
+makeRequest();
