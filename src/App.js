@@ -33,7 +33,7 @@ function App() {
     };
 
     fetchData(); // Call the function inside useEffect
-}, []); // Empty dependency array means this effect runs only once after initial render
+}, [name,setName]); // Empty dependency array means this effect runs only once after initial render
   return (<div>
   <Router>
     <Header/>
