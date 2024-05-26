@@ -5,6 +5,7 @@ import "./Home.css";
 import axios from 'axios';
 
 export default function Home({name}) {
+  const [person, setPerson] = useState({});
     const handleForm=(e)=>{
         e.preventDefault();
         console.log(person);
@@ -16,20 +17,19 @@ export default function Home({name}) {
       const value=e.target.value;
       setPerson({...person,[e.target.name]:value});
     }
-    const [person, setPerson] = useState({});
+  
     const postData=()=>{
       axios.post(`/addDaily/${name}`,person).then((result) => {
         console.log(result);
         toast.success(result.data);
      }).catch((err) => {
-        
+  
      });
     }
   return <>
          <ToastContainer autoClose={10000}/>
         <div className="maincon">
         <div className="box1">
-   
 
     <form onSubmit={(e)=>handleForm(e)}>
     <h4 className="">Add-Daily-Finances</h4>
