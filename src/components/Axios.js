@@ -1,9 +1,9 @@
 import axios from 'axios';
 
 const serverURLs = [
-    'https://ecoev-new.onrender.com',
-    'https://ecoev-new-3ufl.onrender.com',
-    'https://ecoev-new-botc.onrender.com'
+    'https://ecoev1.onrender.com',
+    'https://ecoev1-f6lb.onrender.com',
+    'https://ecoev1-l3o4.onrender.com'
 ];
 
 let currentServerIndex = 0;
