@@ -9,6 +9,7 @@ export default function First({name,setName}) {
   
   const [total,setTotal]=useState({});
   const [month,setMonth]=useState({});
+  const [year,setYear]=useState({});
   useEffect(() => {
     console.log("Finding TotalData");
    axios.get(`/getTotalData/current`).then((result) => {
@@ -19,10 +20,19 @@ export default function First({name,setName}) {
    });
   }, [])
     const navigate=useNavigate();
-  const handleChange = (e) => {
+  const handleNameChange = (e) => {
+   
     setName(e.target.value);
-    setMonth(e.target.value) // Update the state with the value entered in the input field
   };
+  const handleMonthChange = (e) => {
+   
+    setMonth(e.target.value);
+  };
+  const handleYearChange = (e) => {
+   
+    setYear(e.target.value);
+  };
+  
   const handleForm=(e)=>{
     e.preventDefault();
     toast.success("Named Added");
@@ -31,8 +41,11 @@ export default function First({name,setName}) {
 }
 const handleSubmit=async(e)=>{
 e.preventDefault();
+console.log(year);
   console.log(`Finding Monthly TotalData ${month}`);
-   axios.get(`/getTotalData/${month}`).then((result) => {
+  let monthName = month.toLowerCase() + year.substring(2);
+  console.log(monthName);
+   axios.get(`/getTotalData/${monthName}`).then((result) => {
       console.log(result.data);
       setTotal(result.data);
 })}
@@ -53,7 +66,7 @@ e.preventDefault();
   id="name"
   name="name"
   value={name} // Bind selected value to the 'name' state variable
-  onChange={handleChange} // Call handleChange function when selection changes
+  onChange={handleNameChange} // Call handleChange function when selection changes
 >
 <option value="select">Select-Name</option>
   <option value="Mohan">Nilu</option>
@@ -67,32 +80,47 @@ e.preventDefault();
   <button type="button" className="btn btn-primary ms-5 mt-2" onClick={()=>{setName("")}}style={{backgroundColor:"#4E6C50"}}>Clear</button>
   </form>
   <form>
-  <div style={{marginTop:"10px"}}>
-  <h4 className="">Get Monthly Details</h4>
-      <select
-        className="form-control"
-        id="month"
-        name="month"
-        value={month}
-        onChange={handleChange}
-      >
-        <option value="select">Select Month</option>
-        <option value="January">January</option>
-        <option value="February">February</option>
-        <option value="March">March</option>
-        <option value="April">April</option>
-        <option value="May">May</option>
-        <option value="June">June</option>
-        <option value="July">July</option>
-        <option value="August">August</option>
-        <option value="September">September</option>
-        <option value="October">October</option>
-        <option value="November">November</option>
-        <option value="December">December</option>
-      </select>
-      <button type="submit" className="btn btn-primary mt-2" style={{ backgroundColor: "#4E6C50" }} onClick={handleSubmit}>Submit</button>
-      <button type="button" className="btn btn-primary ms-5 mt-2" onClick={()=>{setMonth("")}}style={{backgroundColor:"#4E6C50"}}>Clear</button>
-    </div></form>
+  <div style={{ marginTop: "10px" }}>
+    <h4 className="">Get Monthly Details</h4>
+    <select
+      className="form-control"
+      id="month"
+      name="month"
+      value={month}
+      onChange={handleMonthChange}
+    >
+      <option value="select">Select Month</option>
+      <option value="January">January</option>
+      <option value="February">February</option>
+      <option value="March">March</option>
+      <option value="April">April</option>
+      <option value="May">May</option>
+      <option value="June">June</option>
+      <option value="July">July</option>
+      <option value="August">August</option>
+      <option value="September">September</option>
+      <option value="October">October</option>
+      <option value="November">November</option>
+      <option value="December">December</option>
+    </select>
+    <select
+      className="form-control"
+      id="year"
+      name="year"
+      value={year}
+      onChange={handleYearChange}
+    >
+      <option value="select">Select Year</option>
+      {[...Array(7)].map((_, i) => {
+        const year = 2024 + i;
+        return <option key={year} value={year}>{year}</option>;
+      })}
+    </select>
+    <button type="submit" className="btn btn-primary mt-2" style={{ backgroundColor: "#4E6C50" }} onClick={handleSubmit}>Submit</button>
+    <button type="button" className="btn btn-primary ms-5 mt-2" onClick={() => { setMonth(""); setYear(""); }} style={{ backgroundColor: "#4E6C50" }}>Clear</button>
+  </div>
+</form>
+
 
 </div>
 </div>
