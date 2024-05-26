@@ -13,7 +13,7 @@ const Table1 = ({ data }) => {
           </tr>
         </thead>
         <tbody>
-          {data.map((row, index) => (
+          {data.slice().reverse().map((row, index) => (
             <tr key={index}>
               <td>{row.partsname}</td>
               <td>{row.cost}</td>

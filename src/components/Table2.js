@@ -15,16 +15,16 @@ const Table1 = ({ data }) => {
           </tr>
         </thead>
         <tbody>
-          {data.map((row, index) => (
-            <tr key={index}>
-              <td>{row.name}</td>
-              <td>{row.dailyPay}</td>
-              <td>{row.notPaid}</td>
-              <td>{row.due}</td>
-              <td>{row.date}</td>
-            </tr>
-          ))}
-        </tbody>
+  {data.slice().reverse().map((row, index) => (
+    <tr key={index}>
+      <td>{row.name}</td>
+      <td>{row.dailyPay}</td>
+      <td>{row.notPaid}</td>
+      <td>{row.due}</td>
+      <td>{row.date}</td>
+    </tr>
+  ))}
+</tbody>
       </table>
     </div>
   );
