@@ -1,16 +1,101 @@
-.maincon{
+.maincon {
     height: 100vh;
-}
-.box1{
-    background-color:#FAECD6;
-    transform: translate(0%, 20%);
-    height: 30rem;
-    width: 25rem;
-    border-radius: 10px;
-    top: 50%;
-    left: 68%;
+    background-color: #FAECD6;
     display: flex;
-flex-direction: column;
-align-items: center;
-justify-content: space-evenly;
+    flex-direction: column;
+}
+
+.box1 {
+    background-color: #FAECD6;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    /* justify-content: space-evenly; */
+}
+
+.monthlyTotalData {
+    display: flex;
+    flex-direction: column;
+    justify-content: left;
+    padding: 2%;
+    border: 1px solid rgb(58, 57, 57);
+    text-align: left;
+    border-radius: 10px;
+    margin: 5% 2%;
+    width: 90%;
+    background-color: #FFF;
+}
+
+.monthlyTotalData h1 {
+    font-size: 1.2rem;
+    font-weight: 900;
+    margin: 5% 0%;
+}
+
+.monthlyTotalData h5 {
+    background-color: rgb(221, 233, 205);
+    padding: 2%;
+    font-weight: 700;
+    color: darkred;
+    border-radius: 10px;
+}
+
+.driverInfo {
+    display: flex;
+    flex-direction: column;
+    justify-content: left;
+    width: 90%;
+    background-color: #b1ebeb;
+    padding: 2%;
+    align-items: center;
+    border-radius: 10px;
+    border: 2px solid rgb(29, 29, 34);
+    margin: 2%;
+    margin-bottom: 5%;
+}
+
+.driverInfo h1 {
+    font-size: 1.5rem;
+    font-weight: 800;
+    margin: 2%;
+}
+
+.driverInfo form {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+    width: 100%;
+}
+
+.driverInfo form div{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 100%;
+    margin: 1%;
+}
+
+.driverInfo form div .buttonSection {
+    width: 100%;
+    align-items: center;
+    justify-content: space-between;
+}
+
+.driverInfo form div button {
+    width: 48%;
+    margin: 1%;
+    border: none;
+}
+
+.driverInfo form select {
+    width: 100%;
+    display: flex;
+}
+
+@media (max-width: 600px) {
+    .monthlyTotalData h5 {
+        font-size: 1rem;
+        padding: 4%;
+    }
 }
